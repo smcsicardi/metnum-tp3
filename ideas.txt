@@ -1,0 +1,4 @@
+Usar mapa mundial para mostrar los países más afectados con el calentamiento global
+Es decir, dado el promedio anual el del país, y un cml de grado uno, cuáles son los que tienen mayor pendiente (positiva o negativa)
+
+medir "cuando empieza el calentamiento global", dividir los datos en dos chunks y vemos cuál es el que peor predice
