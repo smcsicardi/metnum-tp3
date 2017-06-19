@@ -34,10 +34,10 @@ def dropKFirst(df, k):
     """
     if df.shape[1] != 2: raise Exception('Number of columns different than 2')
     if k <= 0: raise Exception('k cannot be less or equal than zero')
-    
+
     toDrop = list(range(0,k,1))
     newName = list(df)[1]+'Ant'
-    
+
     newCol = list(df[list(df)[1]])
     del newCol[len(newCol)-1]
     del newCol[:k-1]
