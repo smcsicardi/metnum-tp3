@@ -29,20 +29,17 @@ def ecm(xs, ys):
     if len(xs) != len(ys): raise Exception('Different size!')
     return sum([(x - y)**2 for x, y in zip(xs, ys)])/len(xs)
 
-def dropKFirst(df, k):
-    """ Quita las primeras k filas de un dataFrame y agrega una nueva columna con el valor anterior de la temperatura.
-        Necesita un dataFrame de dos columnas (pero se podria modificar para que no).
-    """
-    if df.shape[1] != 2: raise Exception('Number of columns different than 2')
-    if k <= 0: raise Exception('k cannot be less or equal than zero')
+def colapsarK(df, k):
+    for i in range(1,k+1,1):
+        df['prev' + str(i)] = df['temp'].shift(i)
 
     toDrop = list(range(0,k,1))
-    newName = list(df)[1]+'Ant'
-
-    newCol = list(df[list(df)[1]])
-    del newCol[len(newCol)-1]
-    del newCol[:k-1]
 
     df.drop(df.index[toDrop],inplace=True)
     df.reset_index(drop=True, inplace=True)
-    df[newName] = pd.Series(newCol)
+
+def ar(cant):
+    """ Genera la funcion de AR
+    """
+    if cant < 1: raise Exception('Value must be greater than 0')
+    return lambda x: [1] + [x[i] for i in range(cant+1)]
