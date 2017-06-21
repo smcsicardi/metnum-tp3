@@ -34,8 +34,7 @@ def colapsarK(df, column, k):
         df['prev' + str(i)] = df[column].shift(i)
 
     toDrop = list(range(0, k))
-    df.drop(df.index[toDrop],inplace=True)
-    df.reset_index(drop=True, inplace=True)
+    return df.drop(df.index[toDrop]).reset_index(drop=True)
 
 def ar(cant):
     """ Genera la funcion de AR
