@@ -29,12 +29,15 @@ def ecm(xs, ys):
     if len(xs) != len(ys): raise Exception('Different size!')
     return sum([(x - y)**2 for x, y in zip(xs, ys)])/len(xs)
 
-def colapsarK(df, column, k):
+def colapsarK(df, column, k, drop=True):
     for i in range(1, k+1):
         df['prev' + str(i)] = df[column].shift(i)
 
-    toDrop = list(range(0, k))
-    return df.drop(df.index[toDrop]).reset_index(drop=True)
+    if drop:
+        toDrop = list(range(0, k))
+        return df.drop(df.index[toDrop]).reset_index(drop=True)
+    else:
+        return df
 
 def ar(cant):
     """ Genera la funcion de AR
