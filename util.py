@@ -27,7 +27,7 @@ def ecm(xs, ys):
         Toma xs e ys vectores de predicho y real respectivamente.
     """
     if len(xs) != len(ys): raise Exception('Different size!')
-    return sum([(x - y)**2 for x, y in zip(xs, ys)])/len(xs)
+    return (sum([(x - y)**2 for x, y in zip(xs, ys)]))/len(xs)
 
 def colapsarK(df, column, k, drop=True):
     for i in range(1, k+1):
